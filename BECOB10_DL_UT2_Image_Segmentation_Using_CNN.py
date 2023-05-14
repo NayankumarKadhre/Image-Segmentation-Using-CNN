@@ -1,6 +1,7 @@
 # Name: Nayan Kadhre
 # Roll No: BECOB10
 # Dataset: https://www.kaggle.com/competitions/data-science-bowl-2018/data
+# Image Segmentation Using CNN (U-Net)
 
 import tensorflow as tf
 import os
@@ -133,16 +134,13 @@ results = model.fit(X_train, Y_train, validation_split=0.1, batch_size=16, epoch
 
 idx = random.randint(0, len(X_train))
 
-
 preds_train = model.predict(X_train[:int(X_train.shape[0]*0.9)], verbose=1)
 preds_val = model.predict(X_train[int(X_train.shape[0]*0.9):], verbose=1)
 preds_test = model.predict(X_test, verbose=1)
-
  
 preds_train_t = (preds_train > 0.5).astype(np.uint8)
 preds_val_t = (preds_val > 0.5).astype(np.uint8)
 preds_test_t = (preds_test > 0.5).astype(np.uint8)
-
 
 # Perform a check on some random training samples
 ix = random.randint(0, len(preds_train_t))
@@ -161,5 +159,3 @@ imshow(np.squeeze(Y_train[int(Y_train.shape[0]*0.9):][ix]))
 plt.show()
 imshow(np.squeeze(preds_val_t[ix]))
 plt.show()
-
-
